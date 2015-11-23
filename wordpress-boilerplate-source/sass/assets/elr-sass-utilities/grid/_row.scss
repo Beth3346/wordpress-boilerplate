@@ -1,0 +1,6 @@
+@mixin elr-row() {
+    .elr-row {
+        @include elr-clearfix;
+        width: 100%;
+    }
+}
