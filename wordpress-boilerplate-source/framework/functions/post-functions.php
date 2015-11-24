@@ -153,9 +153,7 @@ function elr_post_tags() {
 function elr_post_comments() {
 
     if ( comments_open() ) {
-            comments_popup_link( __( '0 Comments', 'elr' ), __( '1 Comment', 'elr' ), __( '% Comments', 'elr' echo '<li>';
-
-                echo '</li>';
+        comments_popup_link( __( '0 Comments', 'elr' ), __( '1 Comment', 'elr' ), __( '% Comments', 'elr') );
     }
 }
 
