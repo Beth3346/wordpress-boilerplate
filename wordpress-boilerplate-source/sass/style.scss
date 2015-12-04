@@ -13,3 +13,13 @@
                  translation-ready
     Text Domain: elr
 -----------------------------------------------------------------------------*/
+//  ELR Sass Utilities
+
+// Authored Dependencies
+
+@import 'assets/config';
+@import 'assets/elr-sass-utilities/sass-utilities';
+
+@import 'partials/general';
+@import 'partials/header';
+@import 'partials/main-content';

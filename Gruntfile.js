@@ -3,8 +3,8 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        appFolder: '<%= pkg.name %>-source/',
-        distFolder: '<%= pkg.name %>/',
+        appFolder: '<%= pkg.name %>-source',
+        distFolder: '<%= pkg.name %>',
 
         copy: {
             build: {
@@ -100,7 +100,7 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: '<%= appFolder %>sass',
+                    cwd: '<%= appFolder %>/sass',
                     src: ['**/*.scss'],
                     dest: '<%= distFolder %>',
                     ext: '.css'
@@ -112,7 +112,7 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: '<%= appFolder %>sass',
+                    cwd: '<%= appFolder %>/sass',
                     src: ['**/*.scss'],
                     dest: '<%= distFolder %>',
                     ext: '.css'
@@ -122,7 +122,7 @@ module.exports = function(grunt) {
 
         scsslint: {
             allFiles: [
-                '<%= appFolder %>sass/**/*.scss',
+                '<%= appFolder %>/sass/**/*.scss',
             ],
             options: {
                 bundleExec: false,
@@ -175,7 +175,7 @@ module.exports = function(grunt) {
             },
             sass: {
                 // We watch and compile sass files as normal but don't live reload here
-                files: ['<%= appFolder %>sass/**/*.scss'],
+                files: ['<%= appFolder %>/sass/**/*.scss'],
                 tasks: [ 'sass:dev', 'scsslint', 'csslint' ],
             },
             scripts: {
@@ -184,7 +184,7 @@ module.exports = function(grunt) {
                 tasks: [ 'concat', 'jshint' ],
             },
             copy: {
-                files: [ '<%= appFolder %>/**', '!<%= appFolder %>/**/*.scss', '!<%= appFolder %>/**/*.coffee', '!<%= appFolder %>/**/*.{png,jpg,jpeg}' ],
+                files: [ '<%= appFolder %>/**', '!<%= appFolder %>/**/*.scss', '!<%= appFolder %>/**/*.{png,jpg,jpeg}' ],
                 tasks: [ 'copy' ]
             },
             livereload: {

@@ -1,25 +1,16 @@
-        <footer class="footer">
-            <?php if ( !function_exists( 'dynamic_sidebar' ) || !dynamic_sidebar( 'Footer' ) ) : ?>
-                <section class="footer-widget widget">
-                    <h1 class="widget-title"><?php _e( 'Pages','elr' ); ?></h1>
-                    <ul>
-                    <?php wp_list_pages('title_li=' ); ?>
-                    </ul>
-                </section>
-                <section class="footer-widget widget">
-                    <h1 class="widget-title"><?php _e( 'Category','elr' ); ?></h1>
-                    <ul>
-                    <?php wp_list_categories( 'title_li=' ); ?>
-                    </ul>
-                </section>
-            <?php endif; ?>
+        <footer class="main-footer elr-container-full">
+            <div class="elr-row">
+                <?php if ( !function_exists( 'dynamic_sidebar' ) || !dynamic_sidebar( 'Footer' ) ) : ?>
+                <?php endif; ?>
+            </div>
         </footer>
-        <small class="copyright">
-            <?php bloginfo(); ?> &copy; <?php echo date( 'Y' ); ?>
-            All Rights Reserved. - WordPress Theme by: <a href="http://www.elizabeth-rogers.com">Elizabeth Rogers</a>
+        <div class="copyright elr-container-full elr-text-center">
+            <small>
+                <?php bloginfo(); ?> &copy; <?php echo date( 'Y' ); ?> All Rights Reserved. - WordPress Theme by: <a href="http://www.elizabeth-rogers.com">Elizabeth Rogers</a>
+            </small>
             <!-- wp_footer -->
             <?php wp_footer(); ?>
-        </small>
+        </div>
     <!--end wrapper-->
     </div>
 </body>

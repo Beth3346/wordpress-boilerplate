@@ -7,7 +7,7 @@
             <h1 class="post-title" role="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
         <?php endif; ?>
 
-        <ul class="post-meta">
+        <ul class="post-meta elr-inline-list">
             <li class="post-date"><i class="fa fa-calendar"></i> <time datetime="<?php the_time('o-m-d'); ?>" pubdate><?php the_time('F j, Y'); ?></time></li>
             <li class="post-author"><i class="fa fa-user"></i> <?php the_author_posts_link(); ?></li>
             <li class="post-category"><i class="fa fa-folder"></i> <?php the_category(', '); ?></li>

@@ -1,33 +1,35 @@
 <?php get_header(); ?>
-<main class="main-content">
-    <div class="content-holder">
-        <?php // the loop ?>
-        <?php if (have_posts()) : ?>
-            <header class="archive-header">
-                <h1 class="archive-title"><?php printf( __( 'Category Archives: %s', 'elr' ), single_cat_title( '', false ) ); ?></h1>
+<main class="main-content elr-container-full">
+    <div class="elr-row">
+        <div class="content-holder elr-col-two-thirds">
+            <?php // the loop ?>
+            <?php if (have_posts()) : ?>
+                <header class="archive-header">
+                    <h1 class="archive-title"><?php printf( __( 'Category Archives: %s', 'elr' ), single_cat_title( '', false ) ); ?></h1>
 
-                <?php
-                    // Show an optional term description.
-                    $term_description = term_description();
-                    if ( ! empty( $term_description ) ) :
-                        printf( '<div class="taxonomy-description">%s</div>', $term_description );
-                    endif;
-                ?>
-            </header><!-- .archive-header -->
-            <?php while (have_posts()) : the_post(); ?>
+                    <?php
+                        // Show an optional term description.
+                        $term_description = term_description();
+                        if ( ! empty( $term_description ) ) :
+                            printf( '<div class="taxonomy-description">%s</div>', $term_description );
+                        endif;
+                    ?>
+                </header><!-- .archive-header -->
+                <?php while (have_posts()) : the_post(); ?>
 
-                <?php get_template_part( 'content/content', get_post_format() ); ?>
+                    <?php get_template_part( 'content/content', get_post_format() ); ?>
 
-            <?php endwhile; ?>
+                <?php endwhile; ?>
 
-            <?php get_template_part( 'partials/pagination' ); ?>
+                <?php get_template_part( 'partials/pagination' ); ?>
 
-        <?php else : ?>
+            <?php else : ?>
 
-            <?php get_template_part( 'content/content', 'none' ); ?>
+                <?php get_template_part( 'content/content', 'none' ); ?>
 
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
+        <?php get_sidebar(); ?>
     </div>
-    <?php get_sidebar(); ?>
 </main>
 <?php get_footer(); ?>
