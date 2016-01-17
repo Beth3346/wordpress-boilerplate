@@ -19,8 +19,9 @@
             <?php comments_template(); ?>
         <?php endwhile; ?>
         </div>
-        <!-- /#content -->
-        <?php get_sidebar(); ?>
+        <aside class="sidebar elr-col-third" id="sidebar">
+            <?php get_sidebar(); ?>
+        </aside>
     </div>
 </main>
 

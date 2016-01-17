@@ -2,24 +2,12 @@
 <main class="main-content elr-container-full">
     <div class="elr-row">
         <div class="content-holder elr-col-two-thirds">
-            <?php // the loop ?>
-            <?php if ( have_posts() ) : ?>
-                <h1>Archive</h1>
-                <?php while ( have_posts() ) : the_post(); ?>
-
-                    <?php get_template_part( 'content/content', get_post_format() ); ?>
-
-                <?php endwhile; ?>
-
-                <?php get_template_part( 'partials/pagination' ); ?>
-
-            <?php else : ?>
-
-                <?php get_template_part( 'content/content', 'none' ); ?>
-
-            <?php endif; ?>
+            <h1>Archive</h1>
+            <?php elr_loop(); ?>
         </div>
-        <?php get_sidebar(); ?>
+        <aside class="sidebar elr-col-third" id="sidebar">
+            <?php get_sidebar(); ?>
+        </aside>
     </div>
 </main>
 <?php get_footer(); ?>

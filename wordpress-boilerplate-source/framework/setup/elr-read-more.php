@@ -9,7 +9,7 @@ if ( ! function_exists( 'custom_excerpt_more' ) ) {
     function custom_excerpt_more($more) {
     	global $post;
 
-    	return '...<p><a href="'. get_permalink( get_the_ID() ) . '"' . 'data-post="' . get_the_ID() . '" class="more-link">Read More</a></p>';
+    	return '...<p><a href="'. get_permalink( get_the_ID() ) . '"' . 'data-post="' . get_the_ID() . '" class="learn-more-link">Read More</a></p>';
     }
 }
 

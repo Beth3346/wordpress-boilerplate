@@ -50,14 +50,14 @@ function elr_tax_nav( $post_type, $taxonomy, $current_term = null ) {
 
     if ( $terms ) {
         echo '<nav class="taxonomy-nav">';
-        echo '<h4>' . $tax_name . ': </h4>';
-        echo '<ul data-tax="' . $taxonomy . '">';
+        // echo '<h4>' . $tax_name . ': </h4>';
+        echo '<ul class="taxonomy-menu" data-tax="' . $taxonomy . '">';
 
-        if ( $current_term && in_array( $post_type, $term_names, $current_term ) ) {
-            echo '<li><a href="/' . $post_type . '/" data-term="all">All</a></li>';
-        } else {
-            echo '<li><a href="/' . $post_type . '/" class="active" data-term="all">All</a></li>';
-        }
+        // if ( $current_term && in_array( $post_type, $term_names, $current_term ) ) {
+        //     echo '<li><a href="/' . $post_type . '/" data-term="all">All</a></li>';
+        // } else {
+        //     echo '<li><a href="/' . $post_type . '/" class="active" data-term="all">All</a></li>';
+        // }
     
             // list all terms
             foreach ( $terms as $term ) {

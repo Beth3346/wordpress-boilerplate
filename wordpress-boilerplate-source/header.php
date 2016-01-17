@@ -6,7 +6,6 @@
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <meta name="robots" content="index, follow" />
     <!-- saved from url=(0014)about:internet-->
-    <title><?php echo wp_title( '&nbsp;&ndash;&nbsp;', true, 'right' ) . bloginfo('name'); ?></title>
 
 <?php
 
@@ -48,7 +47,7 @@
                 <p class="site-name"><a href="<?php bloginfo( 'url' ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
             </div>
             <div class="navigation-holder elr-col-two-thirds">
-                <nav id="main-nav" role="navigation">
+                <nav class="main-nav" role="navigation">
                     <?php wp_nav_menu(
                         array(
                             'theme_location' => 'main-nav',

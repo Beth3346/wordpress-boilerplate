@@ -89,6 +89,15 @@
     }
 }
 
+.elr-widget-thumbnail {
+    height: 100px;
+
+    img {
+        width: auto;
+        max-height: 100%;
+    }
+}
+
 .main-footer,
 .copyright {
     background-color: $elr-blue;

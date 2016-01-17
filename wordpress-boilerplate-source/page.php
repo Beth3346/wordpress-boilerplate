@@ -31,7 +31,9 @@
             </article>
             <?php endwhile; ?>
         </div>
-        <?php get_sidebar(); ?>
+        <aside class="sidebar elr-col-third" id="sidebar">
+            <?php get_sidebar(); ?>
+        </aside>
     </div>
 </main>
 <?php get_footer(); ?>

@@ -9,33 +9,35 @@
  * @return void
  */
 
-function elr_post_thumbnail( $holder = 'post-image-holder', $thumbnail_size = array( 400, 9999 ) ) {
+function elr_loop() {
 
-    if ( has_post_thumbnail() ) {
+    if ( have_posts() ) {
 
-        echo '<div class="' . $holder . '">';
+        while ( have_posts() ) : the_post();
+            // since its a custom function we need to make sure it exists
+            if ( function_exists( 'elr_is_custom_post_type' ) ) {
 
-            if ( is_single() || is_page() ) {
-                the_post_thumbnail( $thumbnail_size );
+                if ( elr_is_custom_post_type() ) {
+
+                    get_template_part( 'content/content', get_post_type() );
+
+                } else {
+
+                    get_template_part( 'content/content', get_post_format() );
+                }
 
             } else {
-                echo '<a href="';
-                    the_permalink();
-                echo '">';
-                    the_post_thumbnail( $thumbnail_size );
-                echo '</a>';
+
+                get_template_part( 'content/content', get_post_format() );
             }
 
-            $caption = get_post(get_post_thumbnail_id())->post_excerpt;
+        endwhile;
 
-            if ( $caption ) {
+        get_template_part( 'partials/pagination' );
 
-                echo '<figcaption>';
-                    echo esc_html( $caption );
-                echo '</figcaption>';
-            }
+    } else {
 
-        echo '</div>';
+        get_template_part( 'content/content', 'none' );
     }
 }
 
@@ -108,7 +110,7 @@ function elr_trim_content( $content_length = 200 ) {
 
     if ( strlen( $content ) > $content_length ) {
 
-        return wp_trim_words( elr_remove_quotes( $content ), 30, "..." );
+        return wp_trim_words( elr_remove_quotes( $content ), $content_length, "..." );
 
     } else {
 
@@ -157,13 +159,13 @@ function elr_address( $address ) {
 
         if ( array_key_exists( 'street_address', $address ) ) {
             if ( $address['street_address'] ) {
-                echo '<li class="elr-text-center" itemprop="streetAddress">';
+                echo '<li itemprop="streetAddress">';
                 echo esc_html( $address['street_address'] );
                 echo '</li>';
             }
         }
 
-        echo '<li class="elr-text-center">';
+        echo '<li>';
 
         if ( array_key_exists( 'city', $address ) ) {
             if ( $address['city'] ) {
@@ -220,4 +222,114 @@ function elr_email( $email ) {
         echo antispambot( $email );
         echo '</a>';
     }
+}
+
+function elr_breadcrumbs() {
+    if ( function_exists('yoast_breadcrumb') ) {
+        yoast_breadcrumb('<p id="breadcrumbs" class="breadcrumbs">','</p>');
+    }
+}
+
+function elr_author_archive_title() {
+    /*
+     * Queue the first post, that way we know what author
+     * we're dealing with (if that is the case).
+     *
+     * We reset this later so we can run the loop properly
+     * with a call to rewind_posts().
+     */
+    the_post();
+
+    printf( __( 'All posts by %s', 'elr' ), get_the_author() );
+}
+
+function elr_author_archive_description() {
+    if ( get_the_author_meta( 'description' ) ) {
+        echo '<div class="author-description">';
+        echo get_the_author_meta( 'description' );
+        echo '</div>';
+    }
+}
+
+function elr_category_archive_title() {
+    printf( __( 'Category: %s', 'elr' ), single_cat_title( '', false ) );
+}
+
+function elr_category_archive_description() {
+    $term_description = term_description();
+    if ( ! empty( $term_description ) ) :
+        printf( '<div class="taxonomy-description">%s</div>', $term_description );
+    endif;
+}
+
+function elr_search_archive_title() {
+    printf( __( 'Search Results for: %s', 'elr' ), '<span>' . get_search_query() . '</span>' );
+}
+
+function elr_tag_archive_title() {
+    printf( __( 'Tag: %s', 'elr' ), single_tag_title( '', false ) );
+}
+
+function elr_tag_archive_description() {
+    // Show an optional term description.
+    $term_description = term_description();
+    if ( ! empty( $term_description ) ) :
+        printf( '<div class="taxonomy-description">%s</div>', $term_description );
+    endif;
+}
+
+function elr_related_posts( $taxonomy = 'category', $post_type = 'current', $num_posts = 3 ) {
+    $id = get_the_ID();
+
+    // config
+    if ( $taxonomy === 'category' ) {
+        $term_name = $taxonomy;
+        $term_id = 'cat_ID';
+    } else if ( $taxonomy === 'tag' ) {
+        $term_name = 'post_tag';
+        $term_id = 'term_id';
+    } else {
+        $term_name = $taxonomy;
+        $term_id = 'term_id';
+    }
+
+    if ( $post_type == 'current' ) {
+        $post_type = get_post_type();
+    }
+
+    $terms = get_the_terms($id, $term_name);
+    $related = array();
+
+    // TODO: need to check if term exists
+    if ( !empty( $terms ) ) {
+        foreach( $terms as $term ) {
+            $related[] = $term->$term_id;
+            $related_name[]['name'] = $term->name;
+        }
+    } else {
+        return;
+    }
+
+    $loop = new WP_Query(
+        array(
+            'posts_per_page' => $num_posts,
+            $taxonomy. '__in' => $related,
+            'orderby' => 'rand',
+            'post__not_in' => array( $id ),
+            'post_type' => $post_type
+        )
+    );
+
+    if ( $loop->have_posts() ) {
+        $related_posts = '<h3>' . $term_name . ': ' . $terms[0]->name . '</h3>' .
+        '<ul class="related-category-posts">';
+        while( $loop->have_posts() ) {
+            $loop->the_post();
+            $related_posts .= '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+        }
+        $related_posts .= '</ul>';
+        wp_reset_query();
+    }
+
+    return $related_posts;
 }

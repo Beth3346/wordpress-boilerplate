@@ -9,35 +9,33 @@
  * @return void
  */
 
-function elr_get_loop() {
+function elr_post_thumbnail( $holder = 'post-image-holder', $thumbnail_size = array( 400, 9999 ) ) {
 
-    if ( have_posts() ) {
+    if ( has_post_thumbnail() ) {
 
-        while ( have_posts() ) : the_post();
-            // since its a custom function we need to make sure it exists
-            if ( function_exists( 'elr_is_custom_post_type' ) ) {
+        echo '<div class="' . $holder . '">';
 
-                if ( elr_is_custom_post_type() ) {
-
-                    get_template_part( 'content/content', get_post_type() );
-
-                } else {
-
-                    get_template_part( 'content/content', get_post_format() );
-                }
+            if ( is_single() || is_page() ) {
+                the_post_thumbnail( $thumbnail_size );
 
             } else {
-
-                get_template_part( 'content/content', get_post_format() );
+                echo '<a href="';
+                    the_permalink();
+                echo '">';
+                    the_post_thumbnail( $thumbnail_size );
+                echo '</a>';
             }
 
-        endwhile;
+            $caption = get_post(get_post_thumbnail_id())->post_excerpt;
 
-        get_template_part( 'partials/pagination' );
+            if ( $caption ) {
 
-    } else {
+                echo '<figcaption class="post-image-caption">';
+                    echo esc_html( $caption );
+                echo '</figcaption>';
+            }
 
-        get_template_part( 'content/content', 'none' );
+        echo '</div>';
     }
 }
 
@@ -90,7 +88,10 @@ function elr_get_single_loop($archive_link = false, $archive_link_text = 'See Mo
         wp_link_pages(array('before' => '<p><strong>'.__('Pages:','elr').'</strong> ', 'after' => '</p>', 'next_or_number' => 'number'));
 
         get_template_part( 'partials/post-nav' );
-        elr_archive_link( get_post_type(), $archive_link_text );
+
+        if ( elr_is_custom_post_type() ) {
+            elr_archive_link( get_post_type(), $archive_link_text );
+        }
 
         if ( comments_open() ) {
             comments_template();
@@ -108,11 +109,8 @@ function elr_get_single_loop($archive_link = false, $archive_link_text = 'See Mo
  * @return void
  */
 
-function elr_post_category( $id ) {
-
-    if ( get_the_category( $id ) ) {
-        the_category(', ');
-    }
+function elr_post_category() {
+    the_category(', ');
 }
 
 /**
@@ -138,7 +136,7 @@ function elr_post_author() {
  */
 
 function elr_post_tags() {
-    the_tags(' <li class="post-tag">', ', ', '</li>');
+    the_tags(' <li class="post-tag"><i class="fa fa-tags"></i> ', ', ', '</li>');
 }
 
 /**
@@ -168,22 +166,22 @@ function elr_post_comments() {
 
 function elr_post_meta( $id ) {
 
-    echo '<ul class="post-meta">';
-        echo '<li>';
+    echo '<ul class="post-meta elr-inline-list">';
+        echo '<li class="post-date"><i class="fa fa-calendar"></i> ';
             elr_post_date();
         echo '</li>';
-        echo '<li>';
+        echo '<li class="post-author"><i class="fa fa-user"></i> ';
             elr_post_author();
         echo '</li>';
-        echo '<li>';
-            elr_post_category( $id );
+        echo '<li class="post-category"><i class="fa fa-folder"></i> ';
+            elr_post_category();
         echo '</li>';
-        echo '<li>';
-            elr_post_tags();
-        echo '</li>';
-        echo '<li>';
+        elr_post_tags();
+        if ( comments_open() ) {
+            echo '<li class="post-comment"><i class="fa fa-comment"></i> ';
             elr_post_comments();
-        echo '</li>';
+            echo '</li>';
+        }
     echo '</ul>';
 }
 
@@ -258,4 +256,8 @@ function elr_post_actions_nav( $id ) {
         echo get_delete_post_link( $id );
         echo '"><i class="fa fa-trash-o"></i></a>';
     }
+}
+
+function elr_edit_link($text = 'Edit') {
+    edit_post_link( __( $text, 'elr' ) );
 }
