@@ -50,7 +50,5 @@
         } @else {
             color: darken($color, 20%);
         }
-    } @else {
-        @warn "#{error("That's not a context box type!")}";
     }
 }

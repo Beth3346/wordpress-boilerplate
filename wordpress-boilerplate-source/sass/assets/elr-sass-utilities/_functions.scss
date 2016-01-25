@@ -3,10 +3,8 @@
 }
 
 @function is-px($size) {
-    @if ($size == auto) {
+    @if (type-of($size != 'number')) {
         @return false;
-    } @else if (type-of($size != 'number')) {
-        @return true;
     } @else if (unit($size) == 'px') {
         @return true;
     } @else {
@@ -20,9 +18,9 @@
     } @else if ($size == auto) {
         @return auto;
     } @else if (is-px($size)) {
-        @return (strip-units($size) / $default-font-size)#{rem};
+        @return (strip-units($size) / $default-font-size) * 1rem;
     } @else if (unitless($size)) {
-        @return ($size / $default-font-size)#{rem};
+        @return ($size / $default-font-size) * 1rem;
     } @else {
         @return $size;
     }
@@ -34,9 +32,9 @@
     } @else if ($size == auto) {
         @return auto;
     } @else if (is-px($size)) {
-        @return (strip-units($size) / $default-font-size)#{em};
+        @return (strip-units($size) / $default-font-size) * 1em;
     } @else if (unitless($size)) {
-        @return ($size / $default-font-size)#{em};
+        @return ($size / $default-font-size) * 1em;
     } @else {
         @return $size;
     }

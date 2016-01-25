@@ -1,33 +1,6 @@
-@mixin elr-row($max-width: $mars, $container-width: 100%, $responsive-container: 'yes') {
+@mixin elr-row() {
     .elr-row {
         @include elr-clearfix;
         width: 100%;
-    }
-
-    .elr-container-full .elr-row {
-        margin: 0 auto;
-
-        @if ($responsive-container == 'yes') {
-            width: 95%;
-
-            @include elr-breakpoint('mercury') {
-                max-width: $venus;
-            }
-
-            @include elr-breakpoint('venus') {
-                max-width: $earth;
-            }
-
-            @include elr-breakpoint('earth') {
-                max-width: $mars;
-            }
-
-            @include elr-breakpoint('mars') {
-                max-width: $jupiter;
-            }
-        } @else {
-            width: $container-width;
-            max-width: $max-width;
-        }
     }
 }

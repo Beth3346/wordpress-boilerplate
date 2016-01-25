@@ -42,7 +42,6 @@
         }
 
     } @else  {
-        // $direction == right
         &:before {
             @include elr-triangle(left, 10px, half, $bk-color);
             content: '';

@@ -40,3 +40,22 @@
         display: none;
     }
 }
+
+@mixin elr-accordion-nav() {
+    .elr-accordion-icon {
+        padding-right: 5px;
+    }
+
+    .elr-accordion-nav-label {
+        font-weight: $bold;
+    }
+
+    .elr-accordion-nav-inner {
+        padding: 0;
+
+        a {
+            @include elr-em-font(13px);
+            padding-left: 30px;
+        }
+    }
+}

@@ -23,17 +23,9 @@
         &:last-child {
             padding-bottom: 0;
         }
-    }
 
-    .divider {
-        @include elr-list-divider;
-    }
-
-    a {
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
+        &.divider {
+            @include elr-list-divider;
         }
     }
 }
@@ -52,14 +44,6 @@
             border-bottom: 1px solid $border-color;
         }
     }
-
-    a {
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
 }
 
 @mixin elr-inline-list($align: left) {
@@ -70,15 +54,10 @@
     li {
         display: inline-block;
         padding-right: 5px;
+    }
 
-        a {
-            display: inline-block;
-            text-decoration: none;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
+    a {
+        display: inline-block;
     }
 }
 
