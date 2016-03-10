@@ -20,7 +20,7 @@ require_once( FRAMEWORK . '/init.php' );
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 if ( ! isset( $content_width ) ) {
-    $content_width = 1100;
+    $content_width = 1200;
 }
 
 require_once( FRAMEWORK . '/functions/content-helper-functions.php' );
