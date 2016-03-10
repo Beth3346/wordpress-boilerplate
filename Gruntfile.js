@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 
             postbuild: {
                 nonull: false,
-                src: ['<%= distFolder %>/js/dist', '<%= distFolder %>/sass']
+                src: ['<%= distFolder %>/js/assets/', '<%= distFolder %>/js/vendor/', '<%= distFolder %>/sass']
             }
         },
 
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 
             dist: {
                 // the files to concatenate
-                src: ['<%= distFolder %>/js/*.js'],
+                src: ['<%= distFolder %>/js/vendor/**/*.js', '<%= distFolder %>/js/assets/**/*.js', '<%= distFolder %>/js/main.js'],
                 // the location of the resulting JS file
                 dest: '<%= distFolder %>/js/<%= pkg.name %>.<%= pkg.version %>.js'
             }
@@ -180,7 +180,7 @@ module.exports = function(grunt) {
             },
             scripts: {
                 // We watch and compile sass files as normal but don't live reload here
-                files: ['<%= appFolder %>/assets/*.js'],
+                files: ['<%= appFolder %>/js/**/*.js'],
                 tasks: [ 'concat', 'jshint' ],
             },
             copy: {
