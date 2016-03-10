@@ -5,7 +5,7 @@
  *
  * @since  3.0.0
  * @access public
- * @param  
+ * @param
  * @return void
  */
 
@@ -19,7 +19,7 @@ function elr_get_current_tax( $query ) {
     } else {
 
         return null;
-    }    
+    }
 }
 
 /**
@@ -27,7 +27,7 @@ function elr_get_current_tax( $query ) {
  *
  * @since  3.0.0
  * @access public
- * @param  
+ * @param
  * @return void
  */
 
@@ -58,7 +58,7 @@ function elr_tax_nav( $post_type, $taxonomy, $current_term = null ) {
         // } else {
         //     echo '<li><a href="/' . $post_type . '/" class="active" data-term="all">All</a></li>';
         // }
-    
+
             // list all terms
             foreach ( $terms as $term ) {
                 $term_link = get_term_link( $term );
@@ -72,10 +72,10 @@ function elr_tax_nav( $post_type, $taxonomy, $current_term = null ) {
 
                         echo 'data-term="' . $term->slug . '"';
                     echo '>';
-                    echo( ucwords( $term->name ) );
+                    echo $term->name;
                 echo '</a></li>';
             }
-        echo '</ul></nav>';        
+        echo '</ul></nav>';
     }
 }
 
@@ -84,7 +84,7 @@ function elr_tax_nav( $post_type, $taxonomy, $current_term = null ) {
  *
  * @since  3.0.0
  * @access public
- * @param  
+ * @param
  * @return void
  */
 
@@ -98,12 +98,70 @@ function elr_taxonomy_terms( $taxonomy, $id ) {
         echo '<a href="';
         echo $term_link;
         echo '">';
-        echo mb_convert_case($value->name, MB_CASE_TITLE, "UTF-8");
+        echo $value->name;
 
         if ( $key === $last_key ) {
             echo '</a> ';
         } else {
             echo '</a>, ';
-        }    
+        }
     }
+}
+
+function elr_is_parent_term( $term ) {
+    if ( $term->parent == 0 ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function elr_get_parents($taxonomy) {
+    $terms = get_terms($taxonomy, 'orderby=count&hide_empty=1&hierarchical=1');
+    $parents = [];
+    foreach ($terms as $term) {
+        if (elr_is_parent_term($term)) {
+            array_push($parents, $term);
+        }
+    }
+
+    return $parents;
+}
+
+function elr_term_has_posts($id, $taxonomy) {
+    $args = array(
+        // 'post_type' => 'post',
+        'status' => 'publish',
+        'tax_query' => array(
+            array(
+                'taxonomy' => $taxonomy,
+                'field' => 'term_id',
+                'terms' => $id
+            )
+        )
+    );
+    $term_query =  new WP_Query($args);
+    $term_posts_count = $term_query->found_posts;
+    if( $term_posts_count>0 ){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function elr_get_children($term, $taxonomy) {
+    if( elr_is_parent_term( $term ) ) {
+        $terms = [];
+        $ids = get_term_children( $term->term_id, $taxonomy );
+
+        foreach ($ids as $id) {
+            if (elr_term_has_posts($id, $taxonomy)) {
+                array_push($terms, get_term($id));
+            }
+        }
+    } else {
+        $terms = null;
+    }
+
+    return $terms;
 }
