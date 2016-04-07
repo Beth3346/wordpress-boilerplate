@@ -7,7 +7,7 @@
 
 @mixin elr-grid($column-count: 12, $max-width: $mars, $container-width: 100%, $responsive-container: 'yes') {
     @include elr-container($max-width, $container-width, $responsive-container);
-    @include elr-row();
+    @include elr-row($max-width);
     @include elr-columns($column-count);
     @include elr-columns-lg($column-count);
     @include elr-columns-md($column-count);

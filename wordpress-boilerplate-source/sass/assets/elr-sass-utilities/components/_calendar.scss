@@ -30,7 +30,7 @@
 
     th {
         height: auto;
-        text-align: center; 
+        text-align: center;
         color: $grey;
     }
 
@@ -41,7 +41,7 @@
 
         td:last-child {
             border-radius: 0 $border-radius 0 0;
-        }   
+        }
     }
 
     tr:last-child {
@@ -78,7 +78,7 @@
             color: $background-color;
         }
     }
-            
+
     .elr-events {
         a,
         .elr-hour,
@@ -144,7 +144,7 @@
 
     a {
         margin: 0;
-        padding: 0; 
+        padding: 0;
         color: $text-color;
         display: block;
 
@@ -171,7 +171,7 @@
 
     th {
         height: auto;
-        text-align: center; 
+        text-align: center;
         color: $grey;
     }
 
@@ -288,21 +288,10 @@
             padding: 10px 5px 0;
         }
     }
-
-    button {
-        &.elr-event-close,
-        &.elr-event-edit {
-            @include elr-button-solid($main-color, $background-color, 120px, left, 3px, $main-color, inline-block);
-        }
-
-        &.elr-event-delete {
-            @include elr-button-solid($danger-color, $background-color, 120px, left, 3px, $danger-color, inline-block);
-        }
-    }
 }
 
 @mixin elr-calendar($border-radius: 3px, $main-color: $elr-blue, $secondary-color: $light-grey, $text-color: $dark-grey, $background-color: $white, $holiday-color: $success-color) {
-            
+
     button { @include elr-em-margin('all', 10, 0); }
 
     .elr-calendar-header { @include elr-calendar-header($text-color, $secondary-color); }
@@ -311,7 +300,7 @@
     .elr-calendar-view-nav {
         @include elr-button-group($main-color, $background-color, 3px, $main-color);
         margin: 10px 0;
-        
+
         button { @include elr-em-font(14px); }
     }
 

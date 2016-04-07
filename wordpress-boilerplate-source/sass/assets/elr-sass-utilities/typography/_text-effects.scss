@@ -30,3 +30,19 @@
         font-weight: $weight;
     }
 }
+
+@mixin elr-underline($color: $white, $width: 100px, $align: center, $spacing: 30px) {
+    &:after {
+        content: '';
+        width: $width;
+        height: 1px;
+        border-bottom: 1px solid $color;
+        display: block;
+
+        @if ($align == center) {
+            margin: $spacing auto;
+        } @else {
+            margin: $spacing 0;
+        }
+    }
+}

@@ -1,158 +1,32 @@
 .main-content {
     padding-top: 40px;
     padding-bottom: 40px;
-}
 
-.post-title {
-    @include elr-em-font(30px);
-    font-weight: 700;
+    @include elr-breakpoint('mars') {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
 
     @include elr-breakpoint('saturn') {
-        @include elr-em-font(24px);
-    }
-
-    @include elr-breakpoint('neptune') {
-        @include elr-em-font(18px);
-    }
-
-    a {
-        text-decoration: none;
-        color: $link-color;
-        transform: color .3s ease;
-
-        &:hover {
-            text-decoration: none;
-            color: lighten($link-color, 15%);
-            transform: color .3s ease;
-        }
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
 
-.post-meta {
-    @include elr-em-font(14px);
-
-    a {
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: none;
-        }
-    }
-}
-
-.post-image {
+img {
     max-width: 100%;
-    text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-
-    img {
-        max-width: 100%;
-        height: auto;
-        display: inline-block;
-    }
-}
-
-.alignnone {
-    margin-bottom: 15px;
-}
-
-.alignleft {
-    margin-bottom: 15px;
-    float: left;
-    margin-right: 30px;
-}
-
-.alignright {
-    margin-bottom: 15px;
-    float: right;
-    margin-left: 30px;
-}
-
-.aligncenter {
-    margin-bottom: 15px;
-    text-align: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.wp-caption {
-    text-align: center;
-    margin-bottom: 15px;
-    max-width: 100%;
-    box-sizing: border-box;
-
-    .alignleft {
-        float: left;
-        margin: 10px 15px 10px 10px;
-    }
-}
-
-.wp-caption-text {
-    font-style: italic;
-    font-size: .75em;
-    line-height: 120%;
-    margin: 6px 0;
-    margin-bottom: 20px;
+    height: auto;
 }
 
 .content-holder {
     padding-right: 30px;
-}
 
-.sidebar {
-    padding-left: 30px;
-}
-
-.widget-title {
-    @include elr-em-font(18px);
-    font-weight: 700;
-}
-
-.widget {
-    padding: 0 20px 10px;
-
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+    @include elr-breakpoint('saturn') {
+        padding-right: 0;
     }
 
-    li {
-        padding: 0 0 5px;
-        margin: 0;
+    .full-width {
+        padding-left: 15px;
+        padding-right: 15px;
     }
-
-    a {
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: none;
-        }
-    }
-}
-
-.elr-widget-thumbnail {
-    height: 100px;
-
-    img {
-        width: auto;
-        max-height: 100%;
-    }
-}
-
-.main-footer,
-.copyright {
-    background-color: $elr-blue;
-    color: $white;
-    padding-bottom: 20px;
-
-    a {
-        color: $white;
-    }
-}
-
-.main-footer {
-    padding-top: 20px;
 }

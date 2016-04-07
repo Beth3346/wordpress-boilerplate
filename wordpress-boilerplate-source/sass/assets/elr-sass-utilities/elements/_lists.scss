@@ -23,10 +23,10 @@
         &:last-child {
             padding-bottom: 0;
         }
+    }
 
-        &.divider {
-            @include elr-list-divider;
-        }
+    .divider {
+        @include elr-list-divider;
     }
 }
 

@@ -1,17 +1,22 @@
 // Forms
 // scss-lint:disable ImportantRule SelectorFormat QualifyingElement
 
-@mixin elr-formstack-reset {
+@mixin elr-formstack-reset($background: transparent, $color: $text-color, $border-radius: 0, $input-color: $white, $border-color: none) {
     // Formstack Form reset
     .fsForm {
         border: 0 !important;
-        color: $text-color;
         width: 100% !important;
+        background-color: $background !important;
+        margin: 0 !important;
     }
 
     .fsBody .fsLabel,
     .fsBody label {
         font-weight: normal !important;
+    }
+
+    .fsBody .fsRowBody {
+        padding: 10px 0 !important;
     }
 
     .fsForm [type=text],
@@ -23,8 +28,27 @@
         width: 100% !important;
         background-image: none !important;
         max-width: none !important;
+        border-radius: $border-radius !important;
+        background-color: $input-color !important;
+        color: $color !important;
+
+        @if ($border-color != none) {
+            border: 1px solid $border-color !important;
+        } @else {
+            border: 0 !important;
+        }
+
+        @include elr-placeholder {
+            color: $color !important;
+        }
+    }
+
+    .fsForm select {
         box-shadow: none !important;
+        -moz-appearance: none !important;
+        -webkit-appearance: none !important;
         appearance: none !important;
+        height: 40px;
     }
 
     .fsPage:after,
@@ -46,15 +70,17 @@
     .fsForm .fsSubmit {
         background: none !important;
         text-align: right;
+        margin: 0 !important;
+        padding: 10px 0 !important;
     }
 
     .fsForm .fsSubmit input {
         border: 0 !important;
         padding: .5em 1em !important;
         font-weight: normal !important;
-        border-radius: 2px !important;
+        border-radius: $border-radius !important;
         cursor: pointer;
-        transition: all .3s ease;
+        color: $color !important;
     }
 
     .fsForm input.fsField[type="email"]:focus,
@@ -63,7 +89,11 @@
     .fsForm input.fsField[type="tel"]:focus,
     .fsForm input.fsField[type="text"]:focus,
     .fsForm textarea.fsField:focus {
-        border-color: $elr-blue !important;
+        border-color: $link-color !important;
+
+        @include elr-placeholder {
+            color: rgba($link-color, .5) !important;
+        }
     }
 
     .fsError {
@@ -74,7 +104,7 @@
     }
 
     .fsForm {
-        color: $black !important;
+        color: $color !important;
     }
 
     .fsboxshadow .fsBody .fsForm {

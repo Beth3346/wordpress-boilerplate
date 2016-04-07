@@ -29,12 +29,17 @@
         width: (100% / 5);
     }
 
+    .elr-col-four-fifths {
+        width: (100% / 5) * 4;
+    }
+
     .elr-col-full,
     .elr-col-half,
     .elr-col-two-thirds,
     .elr-col-third,
     .elr-col-quarter,
     .elr-col-fifth,
+    .elr-col-four-fifths,
     .elr-col-three-fourths {
         @include elr-clearfix;
         float: left;
