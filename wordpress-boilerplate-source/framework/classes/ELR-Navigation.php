@@ -1,10 +1,7 @@
 <?php
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-// Page navigation
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-if ( ! function_exists('elr_pagenav') ) {
-    function elr_pagenav($before = '', $after = '') {
+class ELR_Navigation {
+    public function page_nav($before = '', $after = '') {
         global $wpdb, $wp_query;
 
         $request = $wp_query->request;
