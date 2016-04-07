@@ -1,9 +1,14 @@
-<?php get_header(); ?>
+<?php
+    $elr_post = new ELR_Post;
+    get_header();
+?>
 <main class="main-content elr-container-full">
     <div class="elr-row">
         <div class="content-holder elr-col-two-thirds">
-            <h1>Archive</h1>
-            <?php elr_loop(); ?>
+            <header class="archive-header">
+                <h1 class="archive-title">Archive</h1>
+            </header>
+            <?php $elr_post->loop(); ?>
         </div>
         <aside class="sidebar elr-col-third" id="sidebar">
             <?php get_sidebar(); ?>
