@@ -13,14 +13,11 @@
                     ); ?>
                 </nav>
             </div>
+            <small class="copyright elr-col-full elr-text-center">
+                <?php bloginfo(); ?> &copy; <?php echo date( 'Y' ); ?> All Rights Reserved.
+            </small>
+            <?php wp_footer(); ?>
         </div>
     </footer>
-    <div class="copyright elr-container-full elr-text-center">
-        <small>
-            <?php bloginfo(); ?> &copy; <?php echo date( 'Y' ); ?> All Rights Reserved.
-        </small>
-        <!-- wp_footer -->
-        <?php wp_footer(); ?>
-    </div>
 </body>
 </html>
