@@ -1,6 +1,6 @@
 {
     "name": "wordpress-boilerplate",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "custom WordPress theme",
     "repository": {
         "type": "git",
