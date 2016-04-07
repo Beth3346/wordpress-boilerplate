@@ -1,5 +1,5 @@
 <?php
-
+$service_builder = new ELR_CPT_Builder;
 $singular_name = 'service';
 $plural_name = 'services';
 
@@ -14,25 +14,23 @@ if ( !empty( $role ) ) {
 }
 
 /* Register custom post types on the 'init' hook. */
-add_action( 'init', function() {
+add_action( 'init', function() use ( $service_builder ) {
         $cpt_singular_name = 'service';
         $cpt_plural_name = 'services';
-        $supports = array( 'title', 'editor', 'thumbnail' );
-        $taxonomies = array( 'category', 'post_tag' );
-        return elr_register_post_types( $cpt_singular_name, $cpt_plural_name, $supports, $taxonomies );
+        $supports = ['title', 'editor', 'thumbnail'];
+        $taxonomies = ['category', 'post_tag'];
+        return $service_builder->register_post_types( $cpt_singular_name, $cpt_plural_name, $supports, $taxonomies );
     }, 12
 );
 
-add_action( 'init', function() {
+add_action( 'init', function() use ( $service_builder ) {
         $tax_singular_name = 'service category';
         $tax_plural_name = 'service categories';
         $cpt_singular = 'service';
         $cpt_plural = 'services';
         $hierarchical = true;
-        $terms = array(
-            'food', 'home'
-        ); // list default terms
-        return elr_register_taxonomies( $tax_singular_name, $tax_plural_name, $cpt_singular, $cpt_plural, $hierarchical, $terms );
+        $default_terms = [];
+        return $service_builder->register_taxonomies( $tax_singular_name, $tax_plural_name, $cpt_singular, $cpt_plural, $hierarchical, $default_terms );
     }, 12
 );
 
@@ -42,29 +40,29 @@ $fields = array(
 );
 
 /* Register meta on the 'init' hook. */
-add_action( 'init', function() use ( $fields ) { elr_register_meta( $fields ); }, 12 );
-add_action( 'add_meta_boxes', 'elr_add_cpt_cpt_boxes' );
-add_action( 'save_post', function() use ( $fields ) { return elr_save_meta( $fields ); }, 12 );
+add_action( 'init', function() use ( $fields, $service_builder ) { $service_builder->register_meta( $fields ); }, 12 );
+add_action( 'add_meta_boxes', 'add_cpt_service_boxes' );
+add_action( 'save_post', function() use ( $fields, $service_builder ) { return $service_builder->save_meta( $fields ); }, 12 );
 
-if ( ! function_exists( 'elr_add_cpt_cpt_boxes' ) ) {
-    function elr_add_cpt_cpt_boxes() {
+if ( ! function_exists( 'add_cpt_service_boxes' ) ) {
+    function add_cpt_service_boxes() {
         // add meta boxes here
         add_meta_box(
-            'elr_cpt_info',
+            'service_info',
             'Services',
-            'elr_cpt_info_cb',
+            'service_cpt_info_cb',
             'cpt',
             'normal',
             'high'
         );
         // create meta box html
-        function elr_cpt_cpt_info_cb() {
+        function service_cpt_info_cb() {
             global $post;
             $field = get_post_meta( $post->ID, '_service_field', true );
 
 
             //implement security
-            wp_nonce_field( __FILE__, 'elr_nonce' ); ?>
+            wp_nonce_field( __FILE__, 'cpt_nonce' ); ?>
 
             <label for="_field">Label: </label>
             <input
