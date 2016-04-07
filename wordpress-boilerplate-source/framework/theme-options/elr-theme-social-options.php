@@ -10,8 +10,6 @@
 function elr_theme_default_social_options() {
 
     $defaults = array(
-        'lasik_phone' => '',
-        'medical_appt_phone' => '',
         'facebook_url' => '',
         'twitter_url' => '',
         'youtube_url' => ''
@@ -32,22 +30,6 @@ function elr_theme_intialize_social_options() {
         __( 'Social Options', 'elr' ),        // Title to be displayed on the administration page
         'elr_social_options_callback',        // Callback used to render the description of the section
         'elr_theme_social_options'            // Page on which to add this section of options
-    );
-
-    add_settings_field(
-        'lasik_phone',
-        'Lasik Appointment Phone:',
-        'elr_lasik_phone_callback',
-        'elr_theme_social_options',
-        'social_settings_section'
-    );
-
-    add_settings_field(
-        'medical_appt_phone',
-        'Medical Appointment Phone:',
-        'elr_medical_appt_phone_callback',
-        'elr_theme_social_options',
-        'social_settings_section'
     );
 
     add_settings_field(
@@ -108,56 +90,6 @@ function elr_social_options_callback() {
  * It accepts an array or arguments and expects the first element in the array to be the description
  * to be displayed next to the checkbox.
  */
-
-function elr_lasik_phone_callback() {
-
-    // First, we read the social options collection
-    $options = get_option( 'elr_theme_social_options' );
-
-    if ( !empty( $options['lasik_phone'] ) ) {
-        $value = $options['lasik_phone'];
-    } else {
-        $value = null;
-    }
-
-    // Render the output ?>
-    <input
-        type="tel"
-        class="widefat"
-        id="lasik_phone"
-        placeholder="713-123-4567"
-        name="elr_theme_social_options[lasik_phone]"
-        value="<?php echo esc_attr( $value ); ?>"
-    />
-
-    <small>Provide your Facebook URL</small>
-
-<?php }
-
-function elr_medical_appt_phone_callback() {
-
-    // First, we read the social options collection
-    $options = get_option( 'elr_theme_social_options' );
-
-    if ( !empty( $options['medical_appt_phone'] ) ) {
-        $value = $options['medical_appt_phone'];
-    } else {
-        $value = null;
-    }
-
-    // Render the output ?>
-    <input
-        type="tel"
-        class="widefat"
-        id="medical_appt_phone"
-        placeholder="713-123-4567"
-        name="elr_theme_social_options[medical_appt_phone]"
-        value="<?php echo esc_attr( $value ); ?>"
-    />
-
-    <small>Provide your Facebook URL</small>
-
-<?php }
 
 function elr_facebook_url_callback() {
 
