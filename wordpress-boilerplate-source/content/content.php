@@ -1,11 +1,11 @@
-<?php $elr_post = new ELR_Post; ?>
+<?php $framework = new ELR_Framework; ?>
 
 <article role="article" id="post-<?php the_ID(); ?>" <?php post_class('post'); ?>>
     <header>
-        <?php $elr_post->post_title(); ?>
-        <?php $elr_post->post_meta(get_the_ID()); ?>
+        <?php $framework->post_title(); ?>
+        <?php $framework->post_meta(get_the_ID()); ?>
     </header>
-    <?php $elr_post->post_thumbnail(); ?>
-    <?php $elr_post->post_content(); ?>
-    <footer><?php $elr_post->edit_link(); ?></footer>
+    <?php $framework->post_thumbnail(); ?>
+    <?php $framework->post_content(); ?>
+    <footer><?php $framework->edit_link(); ?></footer>
 </article>

@@ -1,39 +1,35 @@
 <?php
 
-require 'classes/ELR-Admin.php';
-require 'classes/ELR-Archive.php';
-require 'classes/ELR-Comment.php';
-require 'classes/ELR-Content.php';
+// require 'classes/ELR-Admin.php';
+// require 'classes/ELR-Archive.php';
+// require 'classes/ELR-Comment.php';
+// require 'classes/ELR-Content.php';
 require 'classes/ELR-CPT-Builder.php';
-require 'classes/ELR-CPT.php';
+// require 'classes/ELR-CPT.php';
 require 'classes/ELR-Custom-Fields.php';
-require 'classes/ELR-Helpers.php';
+require 'classes/ELR-Framework.php';
+// require 'classes/ELR-Helpers.php';
 // require 'classes/ELR-Mail.php';
-require 'classes/ELR-Navigation.php';
+// require 'classes/ELR-Navigation.php';
 // require 'classes/ELR-Option.php';
-require 'classes/ELR-Pagination.php';
-require 'classes/ELR-Post.php';
-require 'classes/ELR-Post-Query.php';
-require 'classes/ELR-Security.php';
-require 'classes/ELR-Setup.php';
+// require 'classes/ELR-Pagination.php';
+// require 'classes/ELR-Post.php';
+// require 'classes/ELR-Post-Query.php';
+// require 'classes/ELR-Security.php';
+// require 'classes/ELR-Setup.php';
 // require 'classes/ELR-Shortcode.php';
-require 'classes/ELR-Tax.php';
-require 'classes/ELR-Time.php';
-require 'classes/ELR-Validation.php';
+// require 'classes/ELR-Tax.php';
+// require 'classes/ELR-Time.php';
+// require 'classes/ELR-Validation.php';
 require 'custom-posts/elr-cpt-service.php';
 require 'shortcodes/elr-shortcodes.php';
 
-$elr_post = new ELR_Post;
-$elr_admin = new ELR_Admin;
-$elr_archive = new ELR_Archive;
-$elr_cpt = new ELR_CPT;
-$elr_setup = new ELR_Setup;
-$elr_navigation = new ELR_Navigation;
-$elr_security = new ELR_Security;
+$framework = new ELR_Framework;
+$elr_fields = new ELR_Custom_Fields;
 
 // Selects Custom Post Type Templates for single and archive pages
-add_filter('template_include', [$elr_cpt, 'custom_template_include']);
-add_filter('the_generator', [$elr_security, 'remove_wp_version']);
+add_filter('template_include', [$framework, 'custom_template_include']);
+add_filter('the_generator', [$framework, 'remove_wp_version']);
 
 function theme_queue_js(){
     if ((!is_admin()) && is_single() && comments_open() && get_option('thread_comments')) {
@@ -50,22 +46,22 @@ add_theme_support('post-thumbnails');
 add_theme_support('automatic-feed-links');
 
 // Page Title Support for compatibility with SEO plugins
-add_action('after_setup_theme', [$elr_setup, 'theme_slug_setup']);
+add_action('after_setup_theme', [$framework, 'theme_slug_setup']);
 
 // Make theme available for translation
 $lang_dir = THEMEROOT . '/languages';
 load_theme_textdomain('elr', $lang_dir);
 
-$elr_setup->register_menus(['main-nav', 'footer-nav']);
-$elr_setup->register_sidebars(['sidebar']);
+$framework->register_menus(['main-nav', 'footer-nav']);
+$framework->register_sidebars(['sidebar']);
 
-add_filter('manage_posts_columns', [$elr_admin, 'posts_columns'], 5);
-add_action('manage_posts_custom_column', [$elr_admin, 'posts_custom_columns'], 5, 2);
-add_action('dashboard_glance_items' , [$elr_admin, 'dashboard_cpts']);
+add_filter('manage_posts_columns', [$framework, 'thumbnail_column'], 5);
+add_action('manage_posts_custom_column', [$framework, 'thumbnail_custom_column'], 5, 2);
+add_action('dashboard_glance_items' , [$framework, 'dashboard_cpts']);
 
-add_filter('excerpt_more', [$elr_setup, 'custom_more']);
+add_filter('excerpt_more', [$framework, 'custom_more']);
 
-add_filter('excerpt_length', [$elr_setup, 'custom_excerpt_length']);
+add_filter('excerpt_length', [$framework, 'custom_excerpt_length']);
 
 $service_fields = array(
     array(

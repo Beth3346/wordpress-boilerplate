@@ -1,7 +1,7 @@
 <?php
 // Custom Post Type Single Sample
 
-$elr_post = new ELR_Post;
+$framework = new ELR_Framework;
 get_header();
 
 ?>
@@ -10,7 +10,7 @@ get_header();
         <div class="content-holder elr-col-two-thirds">
         <?php while (have_posts()) : the_post(); ?>
             <?php get_template_part('content/content', get_post_type()); ?>
-            <?php $elr_post->link_pages(); ?>
+            <?php $framework->link_pages(); ?>
             <?php get_template_part('partials/post-nav'); ?>
             <?php comments_template(); ?>
         <?php endwhile; ?>

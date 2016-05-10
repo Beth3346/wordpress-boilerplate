@@ -1,4 +1,4 @@
 <?php
-$elr_pagination = new ELR_Pagination;
+$framework = new ELR_Framework;
 
-$elr_pagination->page_nav();
+$framework->page_nav();
