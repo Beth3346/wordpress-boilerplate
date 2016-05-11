@@ -32,7 +32,7 @@ add_action('after_setup_theme', [$framework, 'theme_slug_setup']);
 $lang_dir = THEMEROOT . '/languages';
 load_theme_textdomain('elr', $lang_dir);
 
-$framework->register_menus(['main-nav', 'footer-nav']);
+$framework->register_menus(['main-nav', 'footer-nav', 'social-nav']);
 $framework->register_sidebars(['sidebar']);
 
 add_filter('manage_posts_columns', [$framework, 'thumbnail_column'], 5);
