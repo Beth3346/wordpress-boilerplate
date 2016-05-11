@@ -1,5 +1,5 @@
 <?php
-    $elr_post = new ELR_Post;
+    $framework = new ELR_Framework;
     get_header();
 ?>
 <main class="main-content elr-container-full">
@@ -8,7 +8,7 @@
             <header class="archive-header">
                 <h1 class="archive-title">Archive</h1>
             </header>
-            <?php $elr_post->loop(); ?>
+            <?php $framework->loop(); ?>
         </div>
         <aside class="sidebar elr-col-third" id="sidebar">
             <?php get_sidebar(); ?>
