@@ -13,6 +13,13 @@
 @import 'default-config';
 @import '../config';
 
+@import 'animations/animations';
+@import 'animations/icon-circle';
+@import 'animations/border-icon';
+@import 'animations/dash-icon';
+@import 'animations/fade';
+@import 'animations/links';
+
 @import 'components/accordion';
 @import 'components/alerts';
 @import 'components/calendar';
@@ -73,7 +80,6 @@
 @import 'navigation/nav-bar-pills';
 @import 'navigation/nav-mobile';
 @import 'navigation/navigation-base';
-// @import 'navigation/navigation';
 @import 'navigation/offscreen-menu';
 @import 'navigation/pagination';
 @import 'navigation/pagination-bar';
