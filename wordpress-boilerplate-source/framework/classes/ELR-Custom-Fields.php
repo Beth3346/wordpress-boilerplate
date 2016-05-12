@@ -4,7 +4,8 @@ class ELR_Custom_Fields {
     public function meta_fields_register($fields) {
 
         foreach ($fields as $field) {
-            register_meta('post', [$field]['id'], [$this, 'meta_fields_sanitize'], '__return_true');
+            $id = $field['id'];
+            register_meta('post', $id, [$this, 'meta_fields_sanitize'], '__return_true');
         }
     }
 
@@ -107,7 +108,11 @@ class ELR_Custom_Fields {
 
         foreach ($fields['args'] as $field => $values) {
             foreach ($values as $value) {
-                $type = $value['type'];
+                if (array_key_exists('type', $value)) {
+                    $type = $value['type'];
+                } else {
+                    $type = 'text';
+                }
 
                 if ($type == 'textarea') {
                     echo $this->meta_field_textarea($value);
