@@ -43,6 +43,7 @@ add_filter('excerpt_more', [$framework, 'custom_more']);
 
 add_filter('excerpt_length', [$framework, 'custom_excerpt_length']);
 
+
 // $service_fields = [
 //     [
 //         'id' => '_service_name',
@@ -72,9 +73,13 @@ add_filter('excerpt_length', [$framework, 'custom_excerpt_length']);
 
 // function elr_save_service_fields($service_fields) {
 //     global $post;
-
 //     $elr_fields = new ELR_Custom_Fields;
-//     return $elr_fields->meta_box_save($post->ID, $service_fields);
+
+//     if ($post) {
+//         return $elr_fields->meta_box_save($post->ID, $service_fields);
+//     } else {
+//         return;
+//     }
 // }
 
 // function elr_add_meta_service_box($service_fields) {
@@ -85,3 +90,55 @@ add_filter('excerpt_length', [$framework, 'custom_excerpt_length']);
 // add_action('init', function() use ($service_fields) { elr_register_service_fields($service_fields); }, 12);
 // add_action('save_post', function() use ($service_fields) { elr_save_service_fields($service_fields); }, 12);
 // add_action('add_meta_boxes', function() use ($service_fields) { elr_add_meta_service_box($service_fields); }, 12);
+
+$settings_pages = [
+    [
+        'id' => 'social_options',
+        'title' => 'Social Options'
+    ]
+];
+
+$settings_fields = [
+    [
+        'id' => 'facebook_url',
+        'default_value' => 'http://facebook.com',
+        'label' => 'Facebook URL',
+        'input_type' => 'url',
+        'instructions' => 'Provide your Facebook URL'
+    ],
+    [
+        'id' => 'phone_number'
+    ],
+    [
+        'id' => 'description',
+        'default_value' => 'stuff',
+        'input_type' => 'textarea'
+    ],
+    [
+        'id' => 'some_options',
+        'input_type' => 'select',
+        'options' => [
+            'marketing',
+            'service',
+            'technology'
+        ]
+    ]
+];
+
+function elr_add_theme_menu($settings_title, $settings_pages) {
+    $elr_options = new ELR_Options;
+    return $elr_options->add_theme_menu($settings_title, $settings_pages);
+}
+
+function elr_initialize_social_options($fields, $subpage_id, $subpage_title, $subpage_description) {
+    $elr_options = new ELR_Options;
+    return $elr_options->initialize_options($fields, $subpage_id, $subpage_title, $subpage_description);
+}
+
+add_action('admin_menu', function() use ($settings_pages) {
+    elr_add_theme_menu('Theme Settings', $settings_pages);
+}, 12);
+
+add_action( 'admin_init', function() use ($settings_fields) {
+    elr_initialize_social_options($settings_fields, 'social_options', 'Social Options', 'Provide social information for your business');
+}, 12);
