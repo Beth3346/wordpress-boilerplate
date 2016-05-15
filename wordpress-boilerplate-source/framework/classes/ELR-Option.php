@@ -34,8 +34,8 @@ class ELR_Options {
         }
     }
 
-    public function theme_display(array $subpages, $title = 'Theme Settings', $active_tab = '') {
-            $active_tab = $_GET['tab'];
+    public function theme_display(array $subpages, $title = 'Theme Settings') {
+            $active_tab = isset($_GET['tab']) ? $_GET['tab'] : $subpages[0]['id'];
         ?>
             <div class="wrap">
                 <h2><?php _e($title, 'elr' ); ?></h2>
