@@ -42,7 +42,17 @@ $fields = array(
 /* Register meta on the 'init' hook. */
 add_action( 'init', function() use ( $fields, $service_builder ) { $service_builder->register_meta( $fields ); }, 12 );
 add_action( 'add_meta_boxes', 'add_cpt_service_boxes' );
-add_action( 'save_post', function() use ( $fields, $service_builder ) { return $service_builder->save_meta( $fields ); }, 12 );
+
+add_action( 'save_post', function() use ( $fields, $service_builder ) {
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+
+    //security check - nonce
+    if ( isset( $_POST['cpt_nonce'] ) && $_POST && !wp_verify_nonce( $_POST['cpt_nonce'], __FILE__) ) {
+        return;
+    }
+
+    return $service_builder->save_meta( $fields );
+}, 12 );
 
 if ( ! function_exists( 'add_cpt_service_boxes' ) ) {
     function add_cpt_service_boxes() {
@@ -51,10 +61,11 @@ if ( ! function_exists( 'add_cpt_service_boxes' ) ) {
             'service_info',
             'Services',
             'service_cpt_info_cb',
-            'cpt',
+            'service',
             'normal',
             'high'
         );
+
         // create meta box html
         function service_cpt_info_cb() {
             global $post;
@@ -64,13 +75,13 @@ if ( ! function_exists( 'add_cpt_service_boxes' ) ) {
             //implement security
             wp_nonce_field( __FILE__, 'cpt_nonce' ); ?>
 
-            <label for="_field">Label: </label>
+            <label for="_service_field">Field: </label>
             <input
                 type="text"
                 id="_service_field"
                 name="_service_field"
-                value="<?php echo esc_attr( $field ); ?>"
                 class="widefat"
+                value="<?php echo esc_attr( $field ); ?>"
             />
     <?php }
     }
