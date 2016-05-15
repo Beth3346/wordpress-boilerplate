@@ -157,7 +157,7 @@ class ELR_CPT_Builder {
 
     public function register_meta( $fields ) {
         foreach ( $fields as $field ) {
-            register_meta( 'post', $field, 'sanitize_meta', '__return_true' );
+            register_meta( 'post', $field, '[$this, sanitize_meta]', '__return_true' );
         }
     }
 
