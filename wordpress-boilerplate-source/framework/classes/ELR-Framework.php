@@ -15,13 +15,13 @@ class ELR_Framework {
     }
 
     public function thumbnail_column($defaults) {
-        $defaults['elr_post_thumbs'] = __('Thumbs');
+        $defaults['$this->post_thumbs'] = __('Thumbs');
 
         return $defaults;
     }
 
     public function thumbnail_custom_column($column_name, $id) {
-        if ($column_name === 'elr_post_thumbs') {
+        if ($column_name === '$this->post_thumbs') {
             echo the_post_thumbnail(array(100, 100));
         }
     }
@@ -152,27 +152,20 @@ class ELR_Framework {
         $title = get_the_title();
 
         if ( strlen( $title ) > $title_length ) {
-
             return substr( $this->remove_quotes( $title ), 0, $title_length ) . '...';
-
         } else {
-
             return substr( $this->remove_quotes( $title ), 0, $title_length );
         }
 
     }
 
-    public function trim_content( $content_length = 200 ) {
-        $content = get_the_content();
+    public function trim_content($content, $content_length = 200) {
+        // $content = get_the_content();
 
         if ( strlen( $content ) > $content_length ) {
-
             return wp_trim_words( $this->remove_quotes( $content ), $content_length, "..." );
-
         } else {
-
             return $this->remove_quotes( $content );
-
         }
     }
 
@@ -408,7 +401,7 @@ class ELR_Framework {
                 }
 
                 echo '<div class="cpt-grid-content elr-row" data-post-type="' . $post_type . '">';
-                elr_loop();
+                $this->loop();
 
                 if ($show_count) {
                     $this->post_count($query, $num_posts);
@@ -418,7 +411,7 @@ class ELR_Framework {
                 echo '</div>';
             } else {
                 // if category/tag/author/date archive show normal loop
-                elr_normal_loop();
+                $this->normal_loop();
             }
         } else {
             $num_posts = 0;
@@ -451,11 +444,11 @@ class ELR_Framework {
     }
 
     public function filter_taxonomy_scripts() {
-        wp_localize_script( 'main', 'elr_vars', array(
-                'elr_nonce' => wp_create_nonce( 'elr_nonce' ),
-                'elr_ajax_url' => admin_url( 'admin-ajax.php' ),
-                'elr_current_term' => strtolower( single_term_title( '', false ) ),
-                'elr_current_tax' => 'type'
+        wp_localize_script( 'main', '$this->vars', array(
+                '$this->nonce' => wp_create_nonce( '$this->nonce' ),
+                '$this->ajax_url' => admin_url( 'admin-ajax.php' ),
+                '$this->current_term' => strtolower( single_term_title( '', false ) ),
+                '$this->current_tax' => 'type'
             )
         );
     }
@@ -464,7 +457,7 @@ class ELR_Framework {
     public function filter_taxonomy( $taxonomy ) {
 
         // Verify nonce
-        if ( !isset( $_POST['elr_nonce'] ) || !wp_verify_nonce( $_POST['elr_nonce'], 'elr_nonce' ) ) {
+        if ( !isset( $_POST['$this->nonce'] ) || !wp_verify_nonce( $_POST['$this->nonce'], '$this->nonce' ) ) {
             die('Permission denied');
         }
 
@@ -480,8 +473,8 @@ class ELR_Framework {
             }
 
             // check if taxonomy page
-            if ( $_POST['elr_current_term'] ) {
-                $current_tax = $_POST['elr_current_term'];
+            if ( $_POST['$this->current_term'] ) {
+                $current_tax = $_POST['$this->current_term'];
                 $arr = array( 'taxonomy' => 'type', 'field' => 'slug', 'terms' => array( $current_tax ) );
                 array_push( $tax_args, $arr );
             }
@@ -564,7 +557,7 @@ class ELR_Framework {
         if(empty($paged) || $paged == 0) {
             $paged = 1;
         }
-        $pages_to_show = apply_filters('elr_filter_pages_to_show', 8);
+        $pages_to_show = apply_filters('$this->filter_pages_to_show', 8);
         $pages_to_show_minus_1 = $pages_to_show-1;
         $half_page_start = floor($pages_to_show_minus_1/2);
         $half_page_end = ceil($pages_to_show_minus_1/2);
@@ -645,7 +638,7 @@ class ELR_Framework {
                 $content .= '">';
                 $content .= get_the_title();
                 $content .= '</a></h2><p class="post-box-excerpt">';
-                $content .= esc_html(elr_trim_content($excerpt_length));
+                $content .= esc_html($this->trim_content($excerpt_length));
                 $content .= '</p><a href="';
                 $content .= get_the_permalink();
                 $content .= '" class="post-box-learn-more">Read More</a></div></div>';
@@ -689,7 +682,7 @@ class ELR_Framework {
         }
 
         if ($taxonomy == 'category') {
-            $loop = new WP_Query(
+            $query = new WP_Query(
                 array(
                     'posts_per_page' => $num_posts,
                     'category__in' => $related,
@@ -698,7 +691,7 @@ class ELR_Framework {
                )
            );
         } else if ($taxonomy == 'tag') {
-            $loop = new WP_Query(
+            $query = new WP_Query(
                 array(
                     'posts_per_page' => $num_posts,
                     'tag__in' => $related,
@@ -707,8 +700,9 @@ class ELR_Framework {
                )
            );
         } else {
-            $loop = new WP_Query(
+            $query = new WP_Query(
                 array(
+                    'posts_per_page' => $num_posts,
                     'post_type' => $post_type,
                     'post__not_in' => array($id),
                     'tax_query' => array(
@@ -722,7 +716,11 @@ class ELR_Framework {
            );
         }
 
-        return $loop;
+        return $query;
+    }
+
+    public function get_query_post_count($query) {
+        return $query->post_count;
     }
 
     public function related_posts($taxonomy = 'category', $post_type = 'current', $num_posts = 3) {
@@ -736,9 +734,11 @@ class ELR_Framework {
             }
             $related_posts .= '</ul>';
             wp_reset_query();
-        }
 
-        return $related_posts;
+            return $related_posts;
+        } else {
+            return null;
+        }
     }
 
     public function related_posts_images($taxonomy = 'category', $post_type = 'current', $num_posts = 3) {
@@ -759,7 +759,7 @@ class ELR_Framework {
 
             return $related_posts;
         } else {
-            return;
+            return null;
         }
     }
 
@@ -930,15 +930,16 @@ class ELR_Framework {
         echo '</h1>';
     }
 
-    public function post_content($excerpt = true) {
+    public function post_content($excerpt = true, $num_characters = 100) {
+        $content = get_the_content();
 
-        if (is_single() || is_page()) {
+        if (is_single()) {
             echo '<div class="post-content">';
                 the_content();
             echo '</div>';
         } elseif ($excerpt === true) {
             echo '<div class="post-excerpt">';
-                the_excerpt();
+            echo $this->trim_content($content, $num_characters);
             echo '</div>';
         } else {
             the_content();
@@ -1126,7 +1127,7 @@ class ELR_Framework {
         $terms = get_terms($taxonomy, 'orderby=count&hide_empty=1&hierarchical=1');
         $parents = [];
         foreach ($terms as $term) {
-            if (elr_is_parent_term($term)) {
+            if ($this->is_parent_term($term)) {
                 array_push($parents, $term);
             }
         }
