@@ -223,4 +223,5 @@ dwsync.xml
 *.scssc
 /.sass-cache/
 /twentyfifteen/
-/wordpress-boilerplate/
+/wordpress-boilerplate/node_modules/
+/wordpress-boilerplate/.sass-cache/

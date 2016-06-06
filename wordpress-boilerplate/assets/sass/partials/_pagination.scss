@@ -1,0 +1,77 @@
+// scss-lint:disable SelectorDepth NestingDepth
+
+.page-nav {
+    @include elr-clearfix;
+    padding-bottom: 20px;
+    text-align: center;
+    color: $white;
+
+    @include elr-breakpoint('saturn') {
+        text-align: center;
+    }
+
+    a,
+    span {
+        @include elr-circle(30px, inline-block);
+        zoom: 1;
+        text-align: center;
+        margin: 0 0 0 5px;
+        line-height: 1.8em;
+        color: $text-color;
+    }
+
+    a {
+        text-decoration: none;
+        font-weight: normal;
+        transition: background-color, .3s, ease, color, .3s, ease;
+
+        &:hover {
+            color: $white;
+            background-color: $elr-blue;
+        }
+    }
+
+    .current {
+        text-decoration: none;
+        color: $white;
+        background: $text-color;
+    }
+}
+
+.post-pager {
+    a {
+        text-decoration: none;
+        line-height: 1.9em;
+        color: $text-color;
+        transition: background-color, .3s, ease, color, .3s, ease;
+
+        &:hover {
+            text-decoration: none;
+            color: $elr-blue;
+
+            .arrow {
+                background: $elr-blue;
+            }
+        }
+
+        .arrow {
+            @include elr-circle(30px, inline-block);
+            text-align: center;
+            background: $text-color;
+            color: $white;
+            margin-right: 5px;
+            transition: background-color, .3s, ease;
+        }
+
+        .post-pager-title {
+            padding: 0;
+            margin: 0;
+        }
+    }
+}
+
+.post-next .arrow {
+    float: right;
+    margin-right: 0;
+    margin-left: 8px;
+}
