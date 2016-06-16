@@ -13,7 +13,7 @@ class ThemeOptions {
             'theme_options',
             function() use ($subpages)
             {
-                $this->theme_display($subpages, 'Theme Settings');
+                $this->themeDisplay($subpages, 'Theme Settings');
             }
         );
 
@@ -24,7 +24,7 @@ class ThemeOptions {
             'theme_menu',
             function() use ($subpages)
             {
-                $this->theme_display($subpages, 'Theme Settings');
+                $this->themeDisplay($subpages, 'Theme Settings');
             }
         );
 
@@ -132,7 +132,7 @@ class ThemeOptions {
 
         if ( false == get_option($subpage_id) )
         {
-            add_option($subpage_id, apply_filters([$this, 'default_options'], $this->default_options($fields)));
+            add_option($subpage_id, apply_filters([$this, 'defaultOptions'], $this->defaultOptions($fields)));
         }
 
         add_settings_section(
@@ -155,7 +155,7 @@ class ThemeOptions {
                 $label,
                 function() use($field, $subpage_id)
                 {
-                    $this->field_callback($field, $subpage_id);
+                    $this->fieldCallback($field, $subpage_id);
                 },
                 $subpage_id,
                 $section

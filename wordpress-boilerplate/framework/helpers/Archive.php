@@ -4,11 +4,31 @@ namespace Framework\Helpers;
 
 class Archive
 {
-    public function authorArchiveTitle()
+    /**
+     * outputs 
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
+    public function authorArchiveTitle($text = 'All posts by')
     {
         the_post();
-        printf(__('All posts by %s', 'elr'), get_the_author());
+        $author = get_the_author();
+        // printf(__('All posts by %s', 'elr'), get_the_author());
+        echo $text . ' ' . $author;
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function authorArchiveDescription()
     {
@@ -19,10 +39,28 @@ class Archive
         }
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function categoryArchiveTitle()
     {
         printf(__('Category: %s', 'elr'), single_cat_title('', false));
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function categoryArchiveDescription()
     {
@@ -33,15 +71,42 @@ class Archive
         }
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function searchArchiveTitle()
     {
         printf(__('Search Results for: %s', 'elr'), '<span>' . get_search_query() . '</span>');
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function tagArchiveTitle()
     {
         printf(__('Tag: %s', 'elr'), single_tag_title('', false));
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function tagArchiveDescription()
     {

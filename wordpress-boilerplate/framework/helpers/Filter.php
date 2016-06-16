@@ -4,12 +4,31 @@ namespace Framework\Helpers;
 
 class Filter
 {
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function cptFilters($taxonomies, $post_archive, $tax_term)
     {
         foreach ($taxonomies as $tax) {
             $this->tax_nav_filter($post_archive, $tax, $tax_term);
         }
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function cptLimitFilters($post_archive)
     {
@@ -22,10 +41,28 @@ class Filter
         echo '</nav>';
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function postCount($query, $num_posts)
     {
         return 'Showing '. $query->post_count . ' of ' . $num_posts;
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function filterTaxonomyScripts($file_name = 'main', $current_tax)
     {
@@ -37,6 +74,15 @@ class Filter
            )
        );
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     // Script for getting posts
     public function filterTaxonomy($taxonomy, $limiter)

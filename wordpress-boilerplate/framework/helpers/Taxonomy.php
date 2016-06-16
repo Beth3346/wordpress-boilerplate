@@ -4,6 +4,16 @@ namespace Framework\Helpers;
 
 class Taxonomy
 {
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function getCurrentTax($query)
     {
         if (is_tax()) {
@@ -45,6 +55,15 @@ class Taxonomy
         }
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function termList($taxonomy)
     {
         $terms = get_terms([
@@ -65,6 +84,15 @@ class Taxonomy
 
         echo $list;
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function getRelatedTerms($taxonomy, $type, $terms, $term_tax)
     {
@@ -91,6 +119,15 @@ class Taxonomy
         return array_unique($rel_terms);
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function getTermNames($terms)
     {
         $term_names = [];
@@ -103,6 +140,15 @@ class Taxonomy
         return $term_names;
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function isParentTerm($term)
     {
         if ($term->parent == 0) {
@@ -111,6 +157,15 @@ class Taxonomy
             return false;
         }
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function getParents($taxonomy)
     {
@@ -125,6 +180,15 @@ class Taxonomy
 
         return $parents;
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function termHasPosts($id, $taxonomy)
     {
@@ -149,6 +213,15 @@ class Taxonomy
         }
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function getChildren($term, $taxonomy)
     {
         if($this->isParentTerm($term)) {
@@ -167,6 +240,15 @@ class Taxonomy
 
         return $terms;
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function taxNav($query, $post_type, $taxonomy, $type, $term_tax, $current_term = null)
     {
@@ -223,6 +305,15 @@ class Taxonomy
         }
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function taxDropdown($post_type, $taxonomy, $current_term = null)
     {
         $tax_args = array(
@@ -254,6 +345,15 @@ class Taxonomy
             echo '</select>';
         }
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function taxNavFilter($query, $post_type, $taxonomy, $type, $term_tax, $current_term = null)
     {
@@ -316,6 +416,15 @@ class Taxonomy
             echo '</ul></nav>';
         }
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function taxDropdownFilter($post_type, $taxonomy, $current_term = null)
     {

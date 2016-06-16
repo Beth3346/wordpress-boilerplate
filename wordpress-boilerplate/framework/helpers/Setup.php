@@ -4,10 +4,29 @@ namespace Framework\Helpers;
 
 class Setup
 {
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function themeSlugSetup()
     {
         add_theme_support('title-tag');
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function registerMenus(array $menus)
     {
@@ -21,6 +40,15 @@ class Setup
         }
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function customExcerptLength($text, $custom_length = 50)
     {
         return $custom_length;
@@ -28,12 +56,31 @@ class Setup
 
     // make read more link to post
     // add a data-post attribute to make it easy for script to find and use
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function customMore($more, $read_more = 'Read More')
     {
         global $post;
 
         return '...<p><a href="'. get_permalink(get_the_ID()) . '" class="learn-more-link">' . $read_more . '</a></p>';
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function registerSidebars(array $sidebars, $title_tag = 'h3')
     {

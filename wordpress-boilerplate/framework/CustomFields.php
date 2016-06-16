@@ -10,7 +10,7 @@ class CustomFields
         foreach ($fields as $field)
         {
             $id = $field['id'];
-            register_meta('post', $id, [$this, 'meta_fields_sanitize'], '__return_true');
+            register_meta('post', $id, [$this, 'metaFieldsSanitize'], '__return_true');
         }
     }
 
@@ -54,7 +54,7 @@ class CustomFields
         add_meta_box(
             $box_id,
             $box_title,
-            [$this, 'meta_box_cb'],
+            [$this, 'metaBoxCb'],
             $post_type,
             'normal',
             'high',
@@ -136,12 +136,12 @@ class CustomFields
 
                 if ($type == 'textarea')
                 {
-                    echo $this->meta_field_textarea($value);
+                    echo $this->metaFieldTextarea($value);
                 } elseif ($type == 'select')
                 {
-                    echo $this->meta_field_select($value);
+                    echo $this->metaFieldSelect($value);
                 } else {
-                    echo $this->meta_field_input($value);
+                    echo $this->metaFieldInput($value);
                 }
             }
         }

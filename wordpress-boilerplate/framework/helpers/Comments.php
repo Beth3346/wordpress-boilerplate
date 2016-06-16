@@ -4,6 +4,15 @@ namespace Framework\Helpers;
 
 class Comments
 {
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function customThemeComment($comment, $args, $depth)
     {
        $GLOBALS['comment'] = $comment;

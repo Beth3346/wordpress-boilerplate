@@ -34,6 +34,15 @@ class Loop
         }
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function cptLoop()
     {
         if (have_posts()) {
@@ -45,6 +54,15 @@ class Loop
             get_template_part('content/content', 'none');
         }
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function loop()
     {
@@ -63,6 +81,15 @@ class Loop
         }
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function pageLoop()
     {
         while (have_posts()) : the_post();
@@ -78,15 +105,35 @@ class Loop
         endwhile;
     }
 
-    public function normalLoop()
-    {
-        echo '<div class="content-holder elr-col-two-thirds">';
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
+    public function normalLoop(
+        $content_classes = 'content-holder elr-col-two-thirds',
+        $sidebar_classes = 'sidebar elr-col-third'
+    ) {
+        echo '<div class="' . $content_classes . '">';
         $this->loop();
         echo '</div>';
-        echo '<aside class="sidebar elr-col-third" id="sidebar">';
+        echo '<aside class="' . $sidebar_classes . '" id="sidebar">';
         get_sidebar();
         echo '</aside>';
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function singleLoop($archive_link = false, $archive_link_text = null)
     {

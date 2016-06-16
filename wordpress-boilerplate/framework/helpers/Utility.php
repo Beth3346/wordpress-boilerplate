@@ -51,6 +51,15 @@ class Utility
         return in_array($current_post_type, $custom_types);
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function isBlogPage()
     {
         if (is_front_page() && is_home()) {
@@ -63,6 +72,15 @@ class Utility
             return false;
         }
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function slugify($str)
     {

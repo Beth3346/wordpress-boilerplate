@@ -4,6 +4,16 @@ namespace Framework\Helpers;
 
 class Navigation
 {
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function pageNav($before = '', $after = '')
     {
         global $wpdb, $wp_query;

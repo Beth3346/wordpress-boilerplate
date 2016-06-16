@@ -6,6 +6,16 @@ use Framework\Helpers\Query;
 
 class PostHelper
 {
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function getPosts(
         $post_type = 'post',
         $num = 3,
@@ -59,6 +69,15 @@ class PostHelper
         return null;
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function relatedPosts($taxonomy = 'category', $post_type = 'current', $num_posts = 3)
     {
         $query_helper = new Query;
@@ -80,6 +99,15 @@ class PostHelper
 
         return null;
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function relatedPostsImages($taxonomy = 'category', $post_type = 'current', $num_posts = 3)
     {
@@ -110,6 +138,15 @@ class PostHelper
         return null;
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function postThumbnail($holder = 'post-image-holder', $thumbnail_size = array(400, 9999))
     {
         if (has_post_thumbnail()) {
@@ -136,6 +173,15 @@ class PostHelper
         }
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function archiveLink($post_type, $text = 'See More')
     {
         $cpt_archive = get_post_type_archive_link($post_type);
@@ -144,20 +190,56 @@ class PostHelper
         echo '<a href="' . $cpt_archive . '" class="archive-link">' . $text . '</a>';
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function postCategory()
     {
         the_category(', ');
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function postAuthor()
     {
         the_author_posts_link();
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function postTags()
     {
         the_tags(' <li class="post-tag"><i class="fa fa-tags"></i> ', ', ', '</li>');
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function postComments()
     {
@@ -165,6 +247,15 @@ class PostHelper
             comments_popup_link(__('0 Comments', 'elr'), __('1 Comment', 'elr'), __('% Comments', 'elr'));
         }
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function postDate($relative_publish_dates = false)
     {
@@ -184,6 +275,15 @@ class PostHelper
             echo '</time>';
         }
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function postMeta($id)
     {
@@ -209,6 +309,15 @@ class PostHelper
         echo '</ul>';
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function postTitle($tag = 'h1')
     {
         if (is_single() || is_page()) {
@@ -224,12 +333,30 @@ class PostHelper
         }
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function pageTitle($tag = 'h1')
     {
         echo '<' . $tag . ' class="page-title" role="heading">';
             the_title();
         echo '</' . $tag . '>';
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function postContent($excerpt = true, $num_characters = 100)
     {
@@ -248,6 +375,15 @@ class PostHelper
             the_content();
         }
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function postActionsNav($id)
     {

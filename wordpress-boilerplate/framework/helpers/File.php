@@ -5,6 +5,16 @@ use Framework\Helpers\Utility;
 
 class File
 {
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function customTemplateInclude($template)
     {
         $utility = new Utility;

@@ -5,7 +5,7 @@ namespace Framework\Helpers;
 class Admin
 {
     /**
-     * Adds a custom column to the post admin display
+     * Adds a custom column to the post admin view
      *
      * @since  1.0.0
      * @access public
@@ -21,7 +21,7 @@ class Admin
     }
 
     /**
-     * Display post meta field in custom column on post admin screen
+     * Displays post meta field in custom column on post admin view
      *
      * @since  1.0.0
      * @access public
@@ -38,7 +38,7 @@ class Admin
     }
 
     /**
-     *
+     * Adds a thumbnail column to the post admin view
      *
      * @since  1.0.0
      * @access public
@@ -54,7 +54,7 @@ class Admin
     }
 
     /**
-     *
+     * Displays a thumbnail in the thumbnail column of the post admin view
      *
      * @since  1.0.0
      * @access public
@@ -105,7 +105,7 @@ class Admin
     }
 
     /**
-     *
+     * Adds taxonomies to the Right Now dashboard
      *
      * @since  1.0.0
      * @access public

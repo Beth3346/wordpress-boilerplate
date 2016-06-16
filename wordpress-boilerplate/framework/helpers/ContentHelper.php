@@ -4,6 +4,16 @@ namespace Framework\Helpers;
 
 class ContentHelper
 {
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function trimTitle($title_length = 75)
     {
         $title = get_the_title();
@@ -14,6 +24,15 @@ class ContentHelper
 
         return substr($this->removeQuotes($title), 0, $title_length);
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function trimContent($content, $content_length = 200)
     {
@@ -26,10 +45,28 @@ class ContentHelper
         }
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function removeQuotes($content)
     {
         return str_ireplace('"', '', $content);
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function email($email)
     {
@@ -45,6 +82,16 @@ class ContentHelper
 
         return;
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function video($video, $width = 560, $height = 349)
     {
         if ($video) {
@@ -64,6 +111,15 @@ class ContentHelper
 
         return;
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function address($address)
     {
@@ -115,6 +171,15 @@ class ContentHelper
         }
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function breadcrumbs()
     {
         if (function_exists('yoast_breadcrumb')) {
@@ -124,10 +189,28 @@ class ContentHelper
         return;
     }
 
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function editLink($text = 'Edit')
     {
         edit_post_link(__($text, 'elr'));
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function linkPages()
     {

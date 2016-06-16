@@ -4,6 +4,16 @@ namespace Framework\Helpers;
 
 class Date
 {
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
     public function timeDiff($datetime)
     {
         $current_time = current_time('timestamp') ;
@@ -23,6 +33,15 @@ class Date
             echo '</span>';
         }
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function startEnd($start_date, $start_time, $end_date, $end_time)
     {
@@ -49,6 +68,15 @@ class Date
             echo '</p>';
         }
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
 
     public function isExpired($datetime = null)
     {
