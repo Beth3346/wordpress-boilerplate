@@ -1,3 +1,12 @@
+<?php
+    use Framework\Helpers\Comments;
+
+    function customThemeComment($comment, $args, $depth) {
+        $comments = new Comments;
+        $comments->customThemeComment($comment, $args, $depth);
+    }
+?>
+
 <?php if (post_password_required()) : ?>
     <p class="nopassword"><?php _e('This post is password protected. Enter the password to view any comments.', 'elr'); ?></p>
 <?php
@@ -27,8 +36,10 @@
         <!-- /.pagenav -->
     <?php endif; // check for comment navigation ?>
 
-    <ul class="commentlist">
-        <?php wp_list_comments('callback=custom_theme_comment'); ?>
+    <ul class="commentlist elr-unstyled-list">
+        <?php
+            wp_list_comments('callback=customThemeComment');
+        ?>
     </ul>
 
     <?php if (get_comment_pages_count() > 1 && get_option('page_comments')) : // Are there comments to navigate through? ?>
@@ -43,7 +54,7 @@
     /* If there are no comments and comments are closed,
      * let's leave a little note, shall we?
      */
-    if (! comments_open()) :
+    if (!comments_open()) :
 ?>
 
 <?php endif; // end ! comments_open() ?>
