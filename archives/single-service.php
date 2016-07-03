@@ -12,7 +12,7 @@ get_header();
             <?php get_template_part('content/content', get_post_type()); ?>
             <?php $content_helper->linkPages(); ?>
             <?php get_template_part('partials/post-nav'); ?>
-            <?php comments_template(); ?>
+            <?php //comments_template(); ?>
         <?php endwhile; ?>
         </div>
         <aside class="sidebar elr-col-third" id="sidebar">

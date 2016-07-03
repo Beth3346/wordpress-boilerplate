@@ -20,7 +20,7 @@ if (!empty($role)) {
 add_action('init', function() use ($service_builder) {
         $cpt_singular_name = 'service';
         $cpt_plural_name = 'services';
-        $supports = ['title', 'editor', 'thumbnail'];
+        $supports = ['title', 'editor', 'thumbnail', 'comments'];
         $taxonomies = ['category', 'post_tag'];
         return $service_builder->registerPostTypes($cpt_singular_name, $cpt_plural_name, $supports, $taxonomies);
     }, 12

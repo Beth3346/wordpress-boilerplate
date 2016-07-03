@@ -67,7 +67,7 @@ if (!isset($post_id)) {
     $post_id = NULL;
 }
 
-$custom_comment_form = array('fields' => apply_filters('comment_form_default_fields', array(
+$custom_comment_form = ['fields' => apply_filters('comment_form_default_fields', [
     'author' => '<p class="comment-form-author">' .
             ($req ? '<span class="required">* </span>' : ' ') .
             '<label for="author">' . __('Your Name: ' , 'elr') . '</label><br>' .
@@ -77,8 +77,8 @@ $custom_comment_form = array('fields' => apply_filters('comment_form_default_fie
     'email'  => '<p class="comment-form-email">' .
             ($req ? '<span class="required">* </span>' : '') .
             '<label for="email">' . __('Your Email: ' , 'elr') . '</label><br>' .
-            '<input id="email" name="email" type="text" value="' . esc_attr( $commenter['comment_author_email']) . '" size="30"' . ' class="required email" />' .
-            '</p>')),
+            '<input id="email" name="email" type="email" value="' . esc_attr( $commenter['comment_author_email']) . '" size="30"' . ' class="required email" />' .
+            '</p>']),
     'comment_field' => '<p class="comment-form-comment">' .
             '<label for="comment">' . __('Comments: ' , 'elr') . '</label><br>' .
             '<textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" class="required"></textarea>' .
@@ -89,7 +89,8 @@ $custom_comment_form = array('fields' => apply_filters('comment_form_default_fie
     'comment_notes_after' => '',
     'cancel_reply_link' => __('Cancel' , 'elr'),
     'label_submit' => __('Post Comment' , 'elr'),
-);
+];
+
 comment_form($custom_comment_form);
 ?>
 

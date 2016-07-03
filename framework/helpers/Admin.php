@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Helpers;
+namespace Theme\Framework\Helpers;
 
 class Admin
 {
@@ -25,7 +25,7 @@ class Admin
      *
      * @since  1.0.0
      * @access public
-     * @param
+     * @param  column_name, meta_field, id
      * @return void
      */
 
@@ -42,8 +42,8 @@ class Admin
      *
      * @since  1.0.0
      * @access public
-     * @param
-     * @return void
+     * @param  defaults
+     * @return defaults
      */
 
     public function thumbnailColumn($defaults)
@@ -58,7 +58,7 @@ class Admin
      *
      * @since  1.0.0
      * @access public
-     * @param
+     * @param  column_name, id
      * @return void
      */
 

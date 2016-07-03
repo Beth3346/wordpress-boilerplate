@@ -1,0 +1,50 @@
+{
+    "name": "elr/wordpress-boilerplate",
+    "type": "wordpress-theme",
+    "license": "MIT",
+    "description": "",
+    "homepage": "http://www.elizabeth-rogers.com",
+    "authors": [
+    {
+        "name": "Elizabeth Rogers",
+        "email": "beth@elizabeth-rogers.com",
+        "homepage": "https://github.com/Beth3346"
+    }
+    ],
+    "keywords": [
+        "wordpress"
+    ],
+    "support": {
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "composer/installers": "~1.0",
+        "twig/twig": "~1.0"
+    },
+    "autoload": {
+        "classmap": [
+            "framework/CptBuilder.php",
+            "framework/CustomFields.php",
+            "framework/ThemeOptions.php",
+            "framework/custom-posts/CptService.php",
+            "framework/helpers/Admin.php",
+            "framework/helpers/Archive.php",
+            "framework/helpers/Comments.php",
+            "framework/helpers/ContentHelper.php",
+            "framework/helpers/Date.php",
+            "framework/helpers/File.php",
+            "framework/helpers/Loop.php",
+            "framework/helpers/Navigation.php",
+            "framework/helpers/PostHelper.php",
+            "framework/helpers/Query.php",
+            "framework/helpers/Security.php",
+            "framework/helpers/Setup.php",
+            "framework/helpers/Taxonomy.php",
+            "framework/helpers/Utility.php",
+            "framework/shortcodes/elr-shortcodes.php"
+        ],
+        "psr-4": {
+            "Theme\\": "wordpress-boilerplate/"
+        }
+    }
+}

@@ -5,7 +5,7 @@ namespace Framework\Helpers;
 class Archive
 {
     /**
-     * outputs 
+     * outputs a title for the Author Archive template
      *
      * @since  1.0.0
      * @access public
@@ -13,12 +13,9 @@ class Archive
      * @return void
      */
 
-    public function authorArchiveTitle($text = 'All posts by')
+    public function authorArchiveTitle($text = 'All posts by ')
     {
-        the_post();
-        $author = get_the_author();
-        // printf(__('All posts by %s', 'elr'), get_the_author());
-        echo $text . ' ' . $author;
+        echo $text . get_the_author();
     }
 
     /**
@@ -33,9 +30,9 @@ class Archive
     public function authorArchiveDescription()
     {
         if (get_the_author_meta('description')) {
-            echo '<div class="author-description">';
+            echo '<p class="author-description">';
             echo get_the_author_meta('description');
-            echo '</div>';
+            echo '</p>';
         }
     }
 
@@ -48,9 +45,9 @@ class Archive
      * @return void
      */
 
-    public function categoryArchiveTitle()
+    public function categoryArchiveTitle($text = 'Category: ')
     {
-        printf(__('Category: %s', 'elr'), single_cat_title('', false));
+        echo $text . single_cat_title('', false);
     }
 
     /**
@@ -64,10 +61,10 @@ class Archive
 
     public function categoryArchiveDescription()
     {
-        $term_description = term_description();
+        $term_description = strip_tags(term_description(), '<br> <span> <strong> <em> <b> <i>');
 
-        if (! empty($term_description)) {
-            printf('<div class="taxonomy-description">%s</div>', $term_description);
+        if (!empty($term_description)) {
+            echo '<p class="taxonomy-description">' . $term_description . '</p>';
         }
     }
 
@@ -80,9 +77,9 @@ class Archive
      * @return void
      */
 
-    public function searchArchiveTitle()
+    public function searchArchiveTitle($text = 'Search Results for: ')
     {
-        printf(__('Search Results for: %s', 'elr'), '<span>' . get_search_query() . '</span>');
+        echo $text . get_search_query();
     }
 
     /**
@@ -94,9 +91,9 @@ class Archive
      * @return void
      */
 
-    public function tagArchiveTitle()
+    public function tagArchiveTitle($text = 'Tag: ')
     {
-        printf(__('Tag: %s', 'elr'), single_tag_title('', false));
+        echo $text . single_tag_title('', false);
     }
 
     /**
@@ -110,10 +107,10 @@ class Archive
 
     public function tagArchiveDescription()
     {
-        $term_description = term_description();
+        $term_description = strip_tags(term_description(), '<br> <span> <strong> <em> <b> <i>');
 
-        if (! empty($term_description)) {
-            printf('<div class="taxonomy-description">%s</div>', $term_description);
+        if (!empty($term_description)) {
+            echo '<p class="taxonomy-description">' . $term_description . '</p>';
         }
     }
 }
