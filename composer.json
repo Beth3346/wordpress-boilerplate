@@ -26,7 +26,6 @@
             "framework/CptBuilder.php",
             "framework/CustomFields.php",
             "framework/ThemeOptions.php",
-            "framework/custom-posts/CptService.php",
             "framework/helpers/Admin.php",
             "framework/helpers/Archive.php",
             "framework/helpers/Comments.php",
@@ -40,7 +39,10 @@
             "framework/helpers/Security.php",
             "framework/helpers/Setup.php",
             "framework/helpers/Taxonomy.php",
-            "framework/helpers/Utility.php",
+            "framework/helpers/Utility.php"
+        ],
+        "files": [
+            "framework/custom-posts/CptService.php",
             "framework/shortcodes/elr-shortcodes.php"
         ],
         "psr-4": {

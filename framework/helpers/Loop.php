@@ -1,6 +1,7 @@
 <?php
 
 namespace Framework\Helpers;
+
 use Framework\Helpers\Utility;
 use Framework\Helpers\Post;
 

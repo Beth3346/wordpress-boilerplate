@@ -1,44 +1,12 @@
 <?php
 
-// require 'CptBuilder.php';
-// require 'CustomFields.php';
-// require 'ThemeOptions.php';
-// require 'custom-posts/CptService.php';
-// require 'Helpers/Admin.php';
-// require 'Helpers/Archive.php';
-// require 'Helpers/Comments.php';
-// require 'Helpers/ContentHelper.php';
-// require 'Helpers/Date.php';
-// require 'Helpers/File.php';
-// require 'Helpers/Loop.php';
-// require 'Helpers/Navigation.php';
-// require 'Helpers/PostHelper.php';
-// require 'Helpers/Query.php';
-// require 'Helpers/Security.php';
-// require 'Helpers/Setup.php';
-// require 'Helpers/Taxonomy.php';
-// require 'Helpers/Utility.php';
-// require 'shortcodes/elr-shortcodes.php';
+use Framework\Helpers\Admin;
+use Framework\Helpers\File;
+use Framework\Helpers\Setup;
+use Framework\Helpers\Security;
+use Framework\CustomFields;
+use Framework\ThemeOptions;
 
-// spl_autoload_register(function ($class)
-// {
-//     $segments = array_filter(explode('\\', $class));
-//     $path = __DIR__ . '/' . implode('/', $segments). '.php';
-
-//     if (file_exists($path))
-//     {
-//         include $path;
-//     }
-// });
-
-use Theme\Framework\Helpers\Admin;
-use Theme\Framework\Helpers\File;
-use Theme\Framework\Helpers\Setup;
-use Theme\Framework\Helpers\Security;
-use Theme\Framework\CustomFields;
-use Theme\Framework\ThemeOptions;
-
-// $framework = new Utilities;
 $admin = new Admin;
 $file = new File;
 $setup = new Setup;

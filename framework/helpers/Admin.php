@@ -1,6 +1,6 @@
 <?php
 
-namespace Theme\Framework\Helpers;
+namespace Framework\Helpers;
 
 class Admin
 {

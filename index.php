@@ -1,5 +1,6 @@
 <?php
     use Framework\Helpers\Loop;
+
     $loop = new Loop;
     get_header();
 ?>
