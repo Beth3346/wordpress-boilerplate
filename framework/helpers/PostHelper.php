@@ -403,4 +403,24 @@ class PostHelper
         }
         echo '</div>';
     }
+
+    /**
+     *
+     *
+     * @since  1.0.0
+     * @access public
+     * @param
+     * @return void
+     */
+
+    public function moreLink($text = 'Read More')
+    {
+        $link = '<p><a href="';
+        $link .= get_the_permalink();
+        $link .= '" class="read-more-link">';
+        $link .= $text;
+        $link .= '</a></p>';
+
+        echo $link;
+    }
 }

@@ -14,6 +14,7 @@
 
     <?php $post_helper->postThumbnail(); ?>
     <?php $post_helper->postContent(); ?>
+    <?php $post_helper->moreLink(); ?>
 
     <footer>
         <?php $content_helper->editLink(); ?>
