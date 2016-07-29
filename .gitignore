@@ -226,3 +226,4 @@ dwsync.xml
 /wordpress-boilerplate/node_modules/
 /wordpress-boilerplate/.sass-cache/
 /vendor/
+composer.lock
